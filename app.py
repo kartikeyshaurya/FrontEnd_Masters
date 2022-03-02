@@ -1,15 +1,12 @@
-
-from unittest import result
-from flask import Flask, jsonify 
+from flask import Flask
 app = Flask(__name__)
 
-@app.route("/<string:n>")
+@app.route("/")
 
 def hello():
     return "hello"
 
-
-@app.route("/bfhl/<string:n>" ,methods= ["POST"])
+"""@app.route("/bfhl/<string:n>" ,methods= ["POST"])
 
 
 def hello2(n):
@@ -24,6 +21,7 @@ def hello2(n):
     }
     return jsonify(result)
 
+"""
 
 
 if __name__ == "__main__":
