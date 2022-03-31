@@ -1,40 +1,37 @@
-import React from "react" ; 
-import ReactDOM from "react-dom" ; 
-window.React = React
+import { useState, StrictMode } from "react";
+import { render } from "react-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import Details from "./Details";
 import SearchParams from "./SearchParams";
+import ThemeContext from "./ThemeContext";
+window.React = React
 
-// const App = () => {
-//   return React.createElement("div", {}, [
-//     React.createElement("h1", {}, "Adopt me "),
-//     ...[1, 2, 3, 4].map((i) => React.createElement("h2", {}, i)),
-//     React.createElement(Pet, {
-//       name: "peper",
-//       animal: "bisadfrd",
-//       breed: "cocktiel",
-//     }),
-//     React.createElement(Pet, {
-//       name: "Jinnie ",
-//       animal: "dog",
-//       breed: "GreatDen",
-//     }),
-//     React.createElement(Pet, {
-//       name: "nancy",
-//       animal: "dog",
-//       breed: "German Shefard",
-//     }),
-//   ]);
-// };
-
-const App = () =>  {
-  return(
-  <div>
-  <h1> Adopt me </h1>
-  <SearchParams/>
-  
-  </div>
+const App = () => {
+  const theme = useState("darkblue");
+  return (
+    <ThemeContext.Provider value={theme}>
+      <div>
+        <Router>
+          <header>
+            <Link to="/">Adopt Me!</Link>
+          </header>
+          <Switch>
+            <Route path="/details/:id">
+              <Details />
+            </Route>
+            <Route path="/">
+              <SearchParams />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    </ThemeContext.Provider>
   );
 };
 
-
-//ReactDOM.render(React.createElement(App), document.getElementById("root"));
-ReactDOM.render(<App/>, document.getElementById("root"));
+ReactDOM.render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+  document.getElementById("root")
+  );
