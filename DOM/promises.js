@@ -64,4 +64,3 @@ Promise.race([promise1, promise2]).then((value)=>{
   console.log(value); 
 });
 
-
